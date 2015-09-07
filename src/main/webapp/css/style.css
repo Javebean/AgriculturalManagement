@@ -1,0 +1,111 @@
+﻿body
+{
+	
+	background:url(../images/bg.jpg);
+	-moz-background-size:100% 100%; 
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+input,img{vertical-align:middle;}
+.lg-container
+{
+	height:350px;
+	width:600px;
+	border:1px  solid #fff;
+	position:relative;
+
+
+	margin-left:auto;
+	margin-right:auto;
+	
+	margin-top:15%;
+	
+	text-align:center;
+	background:rgba(0,0,0,0.2) none repeat scroll !important;
+	color:black;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: #666 5px 5px 5px ;
+	-moz-box-shadow: #666 5px 5px 5px;
+	box-shadow:  #666 5px 5px 5px ;;background: #EEFF99;
+}
+.lg_name
+{
+	
+	margin-top:10%;	
+}
+.lg_name input
+{
+	border:1px  solid #fff;
+	border-radius:5px;
+	margin-left:20px;
+	height:35px;
+	width:40%
+}
+.lg_password
+{
+	margin-top:10%;
+}
+.lg_password input
+{
+	position:relative;
+	border:1px  solid #fff;
+	border-radius:5px;
+	margin-left:20px;
+	height:35px;
+	width:40%
+}
+
+
+.button:hover {
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+}
+.button:active {
+    -webkit-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+    -moz-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+    box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+}
+
+
+.button {
+	margin-top:10%;
+/*	f4d60f
+	8cc1b6
+	rgb(32,71,124)
+
+*/
+	background-color:#8cc1b6;
+	font-family: 'Open Sans', sans-serif;
+	font-size:1.5em;
+	text-decoration:none;
+	color:#fff;
+	position:relative;
+	padding:10px 20px;
+	padding-right:50px;
+	border-radius: 5px;
+	box-shadow: inset 0px 1px 0px #9e8d84, 0px 5px 0px 0px #322620, 0px 10px 5px #000;
+}
+.button::before {
+	background-color:#8cc1b6;
+	background-repeat:no-repeat;
+	background-position:center center;
+	content:"";
+	width:20px;
+	height:20px;
+	position:absolute;
+	right:15px;
+	top:50%;
+	margin-top:-9px;
+	border-radius: 50%;
+	box-shadow: inset 0px 1px 0px #19120f, 0px 1px 0px #fff;
+}
+.button:active::before {
+	top:50%;
+	margin-top:-12px;
+	box-shadow: inset 0px 1px 0px #827066, 0px 3px 0px #19120f, 0px 6px 3px #fff;
+}
+
+

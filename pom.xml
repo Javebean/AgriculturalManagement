@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.geariot</groupId>
-	<artifactId>Workflow</artifactId>
+	<artifactId>AgriculturalManagement</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Workflow Maven Webapp</name>
+	<name>AgriculturalManagement Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.1.5.RELEASE</spring.version>
@@ -90,6 +90,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>Workflow</finalName>
+		<finalName>AgriculturalManagement</finalName>
 	</build>
 </project>

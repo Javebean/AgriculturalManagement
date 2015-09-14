@@ -1,45 +1,71 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Å©ÒµĞĞÕşÖ´·¨¹ÜÀíÏµÍ³</title> 
+<head>
+<meta charset="utf-8">
+<title>å†œä¸šè¡Œæ”¿æ‰§æ³•ç®¡ç†ç³»ç»Ÿ</title>
+<c:set value="${pageContext.request.contextPath}" var="ctx"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<link href="js/jui/themes/redmond/jquery-ui-1.8.16.custom.css" rel="stylesheet">
+<link href="js/qtip/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${ctx}/js/jquery.js"></script>
+<script type="text/javascript" src="${ctx}/js/jui/jquery-ui.min.js"></script>
+<script src="${ctx }/js/qtip/jquery.qtip.pack.js" type="text/javascript"></script>
+<script type="text/javascript" src="${ctx }/js/jquery.outerhtml.js" ></script>
+<script type="text/javascript" src="${ctx}/js/workflow.js"></script>
 
-	<link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+<script type="text/javascript">
+	var ctx = "${pageContext.request.contextPath}";
+	if(${empty sessionScope.user.id}){
+		window.location.href="${ctx}/login.html"
+	}
+	$(function(){
+		$('.trace').click(graphTrace);
+		
+	}) 
 
-	
-  </head>
-  <body>
-   <div class="inner">
-            <div  class="daohanglink"style="">
-                <span class="daohang"></span>
-                <span>ÔËĞĞÖĞÁ÷³Ì</span>
-			</div>
-			<div class="well-content" style="border:0px;">
-                <table class="table table-striped table-bordered table-hover datatable">
-									<thead>
-										<tr>
-                                            <th width="10%">°¸¼şÃû</th>
-                                            <th width="15%">Æô¶¯Ê±¼ä</th>
-                                            <th width="20%">µ±Ç°½Úµã</th>
-                                            <th width="20%">Á÷³Ì×´Ì¬</th>
-											<th width="20%">µ±Ç°´¦ÀíÈË</th>
-                                        </tr>
-                                    </thead>
-									<tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>yumi</td>
-                                            <td><a href="#" onclick="#" title="°¸¼ş·ÖÀà·Ö¼¶">°¸¼ş·ÖÀà·Ö¼¶</a></td>
-                                            <td>½­ËÕÄÏ¾©</td>
-											<td>³õ¼¶Å©²úÆ·</td>
+</script>
 
-                                
-                                         </tr>
-									</tbody>
-				</table>
-            </div>
-    </div>
-  </body>
+</head>
+<body>
+	<div class="inner">
+		<div class="daohanglink" style="">
+			<span class="daohang"></span> <span>è¿è¡Œä¸­æµç¨‹</span>
+		</div>
+		<div class="well-content" style="border: 0px;">
+			<table
+				class="table table-striped table-bordered table-hover datatable">
+				<thead>
+					<tr>
+						<th width="10%">æ¡ˆä»¶å</th>
+						<th width="15%">å¯åŠ¨æ—¶é—´</th>
+						<th width="20%">å½“å‰èŠ‚ç‚¹</th>
+						<th width="20%">æµç¨‹çŠ¶æ€</th>
+						<th width="20%">å½“å‰å¤„ç†äºº</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${runningList }" var="dispatch">
+						<c:set var="task" value="${dispatch.task }" />
+						<c:set var="pi" value="${dispatch.processInstance }" />
+						<tr id="${dispatch.id }" tid="${task.id }">
+
+							<td>${task.name}</td>
+							<td>${dispatch.applyTime}</td>
+							<td><a class="trace" href='#' pid="${pi.id }"
+								title="ç‚¹å‡»æŸ¥çœ‹æµç¨‹å›¾">${task.name }</a></td>
+
+							<td>${pi.suspended ? "å·²æŒ‚èµ·" : "æ­£å¸¸" }ï¼›<b title='æµç¨‹ç‰ˆæœ¬å·'>V:
+									${dispatch.processDefinition.version }</b></td>
+							<td>${task.assignee }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
 </html>

@@ -1,15 +1,23 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Å©ÒµĞĞÕşÖ´·¨¹ÜÀíÏµÍ³</title>
+<title>å†œä¸šè¡Œæ”¿æ‰§æ³•ç®¡ç†ç³»ç»Ÿ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/stylesheet.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
 <link href="icon/font-awesome.css" rel="stylesheet">
+<script type="text/javascript">
+	if(${empty sessionScope.user.id}){
+		window.location.href="${pageContext.request.contextPath}/login.html"
+	}
+
+</script>
 <script type="text/javascript">
 	function getclassname(obj) {
 		if (document.getElementsByClassName('link_onclick').length == 0) {
@@ -23,6 +31,23 @@
 			obj.id = 'link_onclick';
 		}
 	}
+	
+	$(function(){
+		console.log("${group.id}");
+		var groupId = "${group.id}";
+		if(groupId=="collector"){
+			$("a[name=deal]").hide();
+		}else{
+			$("a[name=deploy]").hide();
+			$("a[name=startPro]").hide();
+		}
+		
+		/* $("a[name=deploy]").click(function(){
+			$.post("process-list.do");
+			return false;
+		}); */
+		
+	})
 </script>
 	<style>
 	body
@@ -42,12 +67,12 @@
 	<header class="dark_grey">
 		<div class="top">
 			<div class="logo">
-				<h1>Å©ÒµĞĞÕşÖ´·¨¹ÜÀíÏµÍ³</h1>
+				<h1>å†œä¸šè¡Œæ”¿æ‰§æ³•ç®¡ç†ç³»ç»Ÿ</h1>
 			</div>
 			<div class="login">
-				<a href="#"><img src="image/login.png" /></a>
+				<a href="logout.do"><img src="image/login.png" /></a>
 			</div>
-			<div class="username">Hi!username</div>
+			<div class="username">æ¬¢è¿æ‚¨ï¼š${user.id }</div>
 			<div class="user" id="logout">
 				<img src="image/user.png" />
 			</div>
@@ -59,22 +84,27 @@
 			<ul class="main">
 
 				<li>
-				<a href="welcome.html" target="right" onClick="getclassname(this)"><i class="icon-home"></i>&nbsp;&nbsp;Ê×Ò³</a>
+				<a href="welcome.html" target="right" onClick="getclassname(this)"><i class="icon-home"></i>&nbsp;&nbsp;é¦–é¡µ</a>
 				</li>
 				<li>
-				<a href="caiji.jsp" target="right" onClick="getclassname(this)"><i class="icon-filter"></i>&nbsp;&nbsp;²É¼¯</a>
+				<a name="deploy" href="process-list.do" target="right" onClick="getclassname(this)"><i class="icon-filter"></i>&nbsp;&nbsp;éƒ¨ç½²æµç¨‹</a>
 				</li>
-								<li>
-				<a href="qdzhdd.jsp" target="right" onClick="getclassname(this)"><i class="icon-pencil"></i>&nbsp;&nbsp;Æô¶¯Ö¸»Óµ÷¶È</a>
+				<li>
+				<a name="startPro" href="caiji.jsp" target="right" onClick="getclassname(this)"><i class="icon-filter"></i>&nbsp;&nbsp;å¯åŠ¨æŒ‡æŒ¥è°ƒåº¦</a>
 				</li>
+				
+				<!-- <li>
+					<a href="qdzhdd.jsp" target="right" onClick="getclassname(this)"><i class="icon-pencil"></i>&nbsp;&nbsp;å¯åŠ¨æŒ‡æŒ¥è°ƒåº¦</a>
+				</li> -->
+				
 					<li>
-				<a href="ddcl.jsp" target="right" onClick="getclassname(this)"><i class="icon-flag"></i>&nbsp;&nbsp;µ÷¶È´¦Àí</a>
+				<a name="deal" href="findtodoTasks.do" target="right" onClick="getclassname(this)"><i class="icon-flag"></i>&nbsp;&nbsp;è°ƒåº¦å¤„ç†</a>
 				</li>
 								<li>
-				<a href="yxzlc.jsp" target="right" onClick="getclassname(this)"><i class="icon-fire"></i>&nbsp;&nbsp;ÔËĞĞÖĞÁ÷³Ì</a>
+				<a href="findRunningProcessInstaces.do" target="right" onClick="getclassname(this)"><i class="icon-fire"></i>&nbsp;&nbsp;è¿è¡Œä¸­æµç¨‹</a>
 				</li>
 				<li>
-				<a href="yjslc.jsp" target="right" onClick="getclassname(this)"><i class="icon-ok-sign"></i>&nbsp;&nbsp;ÒÑ½áÊøÁ÷³Ì</a>
+				<a href="findFinishedProcessInstaces.do" target="right" onClick="getclassname(this)"><i class="icon-ok-sign"></i>&nbsp;&nbsp;å·²ç»“æŸæµç¨‹</a>
 				</li>
 			</ul>
 	

@@ -1,26 +1,32 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Å©ÒµĞĞÕşÖ´·¨¹ÜÀíÏµÍ³</title>
+    <title>å†œä¸šè¡Œæ”¿æ‰§æ³•ç®¡ç†ç³»ç»Ÿ</title>
     <link href="css/index.css" rel="stylesheet">
+    <script type="text/javascript">
+	if(${empty sessionScope.user.id}){
+		window.location.href="${pageContext.request.contextPath}/login.html"
+	}
+
+</script>
   </head>
   <body>
    <div class="inner">
      
             <div  class="daohanglink"style="">
                 <span class="daohang"></span>
-                <span>Æô¶¯Ö¸»Óµ÷¶È</span>
+                <span>å¯åŠ¨æŒ‡æŒ¥è°ƒåº¦</span>
 			</div>
 			<div>
 				<form action="#">
-                    <div class="form_list"><label class="lable_title">ÉÏ±¨Ãû³Æ</label><input class="form_input" type="text"/></div>
-                    <div class="form_area"><label class="lable_title">ÉÏ±¨ÀíÓÉ</label><textarea class="form_area_input"/></textarea></div>
+                    <div class="form_list"><label class="lable_title">ä¸ŠæŠ¥åç§°</label><input class="form_input" type="text"/></div>
+                    <div class="form_area"><label class="lable_title">ä¸ŠæŠ¥ç†ç”±</label><textarea class="form_area_input"/></textarea></div>
 					</br>
 					</br>
-                     <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;Ìá&nbsp;&nbsp;½»&nbsp;&nbsp;"></div>
+                     <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;æ&nbsp;&nbsp;äº¤&nbsp;&nbsp;"></div>
 				</form>   
 			</div>
         </div>

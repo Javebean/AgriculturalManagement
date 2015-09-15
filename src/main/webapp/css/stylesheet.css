@@ -776,11 +776,12 @@ header ul.header_actions > li > ul.messages_dropdown > .btn > span {
   width: 15%;
   position: fixed;
   left: 0;
-  top: 100px;
+  top: 0px;
   background: #fafafa;
   padding-left: 1px;
   border-right: 1px solid #dedede;
   min-height: 100%;
+  z-index:99;
 }
 
 #main_navigation.dark_navigation {
@@ -805,7 +806,7 @@ header ul.header_actions > li > ul.messages_dropdown > .btn > span {
 }
 
 ul.main {
-	margin:0px;
+	margin:0px 0 0 0;
 }
 
 ul.main > li {
@@ -819,7 +820,7 @@ ul.main > li {
 
 ul.main > li > a {
   display: block;
-  height: 40px;
+  height: 60px;
   border: 1px solid #dedede;
   padding: 0 8px;
   font-family: 'Open Sans', sans-serif;
@@ -829,13 +830,15 @@ ul.main > li > a {
   position: relative;
 
   background: #f9f9f9;
+  
+ /* margin:0 0 20pxss 0;*/
 }
 
 #main_navigation.dark_navigation ul.main > li > a {
   
   background:#89c5ac;
   color: #08200a;
-  font-size:1.3em;
+  font-size:1.7em;
   font-weight:900;
   letter-spacing:0.2em;
   border: none;

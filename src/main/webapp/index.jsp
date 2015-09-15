@@ -78,6 +78,9 @@
 	<div id="main_navigation" class="dark_navigation">
 		
 			<ul class="main">
+				<li>
+				<a></a>
+				</li>
 
 				<li>
 				<a href="welcome.html" target="right" onClick="getclassname(this)"><i class="icon-home"></i>&nbsp;&nbsp;首页</a>

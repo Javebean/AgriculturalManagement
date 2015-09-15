@@ -36,16 +36,12 @@
 		console.log("${group.id}");
 		var groupId = "${group.id}";
 		if(groupId=="collector"){
-			$("a[name=deal]").hide();
+			//$("a[name=deal]").hide();
 		}else{
 			$("a[name=deploy]").hide();
 			$("a[name=startPro]").hide();
 		}
 		
-		/* $("a[name=deploy]").click(function(){
-			$.post("process-list.do");
-			return false;
-		}); */
 		
 	})
 </script>

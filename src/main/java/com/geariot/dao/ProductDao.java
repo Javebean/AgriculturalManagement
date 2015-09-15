@@ -20,7 +20,7 @@ public class ProductDao {
 	
 	public void addPro(Produce pro){
 		try{
-			getSession().save(pro);
+			getSession().saveOrUpdate(pro);
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new RuntimeException(e);

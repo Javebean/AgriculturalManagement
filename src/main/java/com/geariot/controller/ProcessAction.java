@@ -3,6 +3,7 @@ package com.geariot.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
@@ -101,8 +102,13 @@ public class ProcessAction {
 	
 	
 	/*启动流程*/
+	@ResponseBody
 	@RequestMapping("/startProcess.do")
-	public String startProcess(Produce pro,HttpSession session) {
+	public String startProcess(Produce pro,HttpSession session,Map<String,Object> map) {
+		startCollect(pro, session);
+		return "success";
+	}
+	private void startCollect(Produce pro, HttpSession session) {
 		try{
 			productService.startProcess(pro);
 			
@@ -132,12 +138,38 @@ public class ProcessAction {
 			logger.error("启动投保流程失败：", e);
 			//redirectAttributes.addFlashAttribute("error", "系统内部错误！");
 		}
-		return "caiji";
 	}
+	
+	/*@RequestMapping("/startProcess2.do")
+	public String startProcess2(Produce pro,HttpSession session,Map<String,Object> map) {
+		try{
+		采集人员启动流程，然后直接签收任务，完成任务
+		User user = (User)session.getAttribute("user");
+		String userId = user.getId();
+		
+		List<Task> todoList = taskService.createTaskQuery()
+				.taskAssignee(userId).orderByTaskPriority().desc()
+				.orderByTaskCreateTime().desc().list();
+		String taskId =  unsignedTasks.get(0).getId();
+		taskService.claim(taskId, userId);
+		完成任务
+		System.out.println("will complete task===========");
+		taskService.complete(taskId);
+		}catch (Exception e) {
+			logger.error("启动投保流程失败：", e);
+			//redirectAttributes.addFlashAttribute("error", "系统内部错误！");
+		}
+		
+		return "redirect:findtodoTasks.do";
+	}*/
 
 	@RequestMapping("/findtodoTasks.do")
 	public String findtodoTasks(HttpSession session, Map<String, Object> map) {
 		User u = (User) session.getAttribute("user");
+		if(u==null){
+			return "redirect:logout.do";
+		}
+		
 		String userId = u.getId();
 		List<Task> tasks = new ArrayList<Task>();
 		List<Task> todoList = taskService.createTaskQuery()
@@ -189,9 +221,23 @@ public class ProcessAction {
 	
 	/*完成任务*/
 	@RequestMapping("/completeTask.do")
-	public String completeTask(@RequestParam("id") String taskId) {
-			taskService.complete(taskId);
+	public String completeTask(@RequestParam("id") String taskId,String assignee,boolean sta) {
+			Map<String,Object> var = new HashMap<String, Object>();
+			if(assignee.equals("JGRY")){
+				var.put("localPass", sta);
+				System.out.println(var+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			}else if(assignee.equals("SJRY")){
+				var.put("pucPass", sta);
+			}
+			taskService.complete(taskId,var);
 			return "redirect:findtodoTasks.do";
+	}
+	
+	@RequestMapping("/completeReCollect.do")
+	public String completeReCollect(Produce pro , String tid){
+		productDao.addPro(pro);
+		taskService.complete(tid);
+		return "redirect:findtodoTasks.do";
 	}
 	
 	@RequestMapping("/completeReportTask.do")
@@ -199,6 +245,7 @@ public class ProcessAction {
 		Produce pro = productDao.getPro(new Integer(businessKey));
 		pro.setReportName(reportName);
 		pro.setReportReason(reportReason);
+		//pro.setId(new Integer(businessKey));
 		productDao.addPro(pro);
 		
 		taskService.complete(taskId);
@@ -289,4 +336,24 @@ public class ProcessAction {
 		List<Map<String, Object>> activityInfos = traceService.traceProcess(processInstanceId);
 		return activityInfos;
 	}
+	
+	
+	/*流程部署中的xml和png的显示*/
+	@RequestMapping(value = "/loadByDeployment.do")
+	public void loadByDeployment(@RequestParam("deploymentId") String deploymentId,
+			@RequestParam("resourceName") String resourceName, HttpServletResponse response) throws Exception {
+		InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId, resourceName);
+		byte[] b = new byte[1024];
+		int len = -1;
+		while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+			response.getOutputStream().write(b, 0, len);
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getProduce.do")
+	public Produce getProduce(int id){
+		return productDao.getPro(id);
+	}
+
 }

@@ -57,8 +57,8 @@ $(function(){
 					<td>${process.name }</td>
 					<td>${process.key }</td>
 					<td>${process.version }</td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/deployment?deploymentId=${process.deploymentId}&resourceName=${process.resourceName }'>${process.resourceName }</a></td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/deployment?deploymentId=${process.deploymentId}&resourceName=${process.diagramResourceName }'>${process.diagramResourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/loadByDeployment.do?deploymentId=${process.deploymentId}&resourceName=${process.resourceName }'>${process.resourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/loadByDeployment.do?deploymentId=${process.deploymentId}&resourceName=${process.diagramResourceName }'>${process.diagramResourceName }</a></td>
 					<td><a href='${ctx }/deleteProcess.do?deploymentId=${process.deploymentId}'>删除</a></td>
 				</tr>
 			</c:forEach>

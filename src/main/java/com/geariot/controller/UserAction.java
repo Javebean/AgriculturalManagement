@@ -25,12 +25,12 @@ public class UserAction {
 			Group group = identityService.createGroupQuery().groupMember(username).singleResult();
 			session.setAttribute("group", group);
 		}
-		return "index";
+		return "redirect:index.jsp";
 	}
 	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
-		return "index";
+		return "redirect:login.html";
 	}
 }

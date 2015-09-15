@@ -21,8 +21,8 @@
     <exclusiveGateway id="exclusivegateway1" name="Parallel Gateway"></exclusiveGateway>
     <exclusiveGateway id="exclusivegateway2" name="Parallel Gateway"></exclusiveGateway>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
-    <bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_AgriculturalManagement">
+    <bpmndi:BPMNPlane bpmnElement="AgriculturalManagement" id="BPMNPlane_AgriculturalManagement">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="57.0" width="61.0" x="0.0" y="138.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>

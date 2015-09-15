@@ -140,36 +140,10 @@ public class ProcessAction {
 		}
 	}
 	
-	/*@RequestMapping("/startProcess2.do")
-	public String startProcess2(Produce pro,HttpSession session,Map<String,Object> map) {
-		try{
-		采集人员启动流程，然后直接签收任务，完成任务
-		User user = (User)session.getAttribute("user");
-		String userId = user.getId();
-		
-		List<Task> todoList = taskService.createTaskQuery()
-				.taskAssignee(userId).orderByTaskPriority().desc()
-				.orderByTaskCreateTime().desc().list();
-		String taskId =  unsignedTasks.get(0).getId();
-		taskService.claim(taskId, userId);
-		完成任务
-		System.out.println("will complete task===========");
-		taskService.complete(taskId);
-		}catch (Exception e) {
-			logger.error("启动投保流程失败：", e);
-			//redirectAttributes.addFlashAttribute("error", "系统内部错误！");
-		}
-		
-		return "redirect:findtodoTasks.do";
-	}*/
 
 	@RequestMapping("/findtodoTasks.do")
 	public String findtodoTasks(HttpSession session, Map<String, Object> map) {
 		User u = (User) session.getAttribute("user");
-		if(u==null){
-			return "redirect:logout.do";
-		}
-		
 		String userId = u.getId();
 		List<Task> tasks = new ArrayList<Task>();
 		List<Task> todoList = taskService.createTaskQuery()
@@ -196,7 +170,6 @@ public class ProcessAction {
 			String businessKey = processInstance.getBusinessKey();
 
 			Produce dispatch = productDao.getPro(new Integer(businessKey));
-
 			dispatch.setTask(task);
 			dispatch.setProcessInstance(processInstance);
 
@@ -234,9 +207,18 @@ public class ProcessAction {
 	}
 	
 	@RequestMapping("/completeReCollect.do")
-	public String completeReCollect(Produce pro , String tid){
+	public String completeReCollect(Produce pro , String tid,String pid){
+		pro.setId(Integer.parseInt(pid));
 		productDao.addPro(pro);
 		taskService.complete(tid);
+		return "redirect:findtodoTasks.do";
+	}
+	
+	/*归档*/
+	@RequestMapping("/completeSaveFile.do")
+	public String completeSaveFile(@RequestParam("id") String taskId,String pid){
+		productDao.updatePro(Integer.parseInt(pid));
+		taskService.complete(taskId);
 		return "redirect:findtodoTasks.do";
 	}
 	
@@ -262,6 +244,7 @@ public class ProcessAction {
 				for (ProcessInstance processInstance : list) {
 					String businessKey = processInstance.getBusinessKey();
 					Produce dispatch = productDao.getPro(new Integer(businessKey));
+					
 					dispatch.setProcessInstance(processInstance);
 					
 					dispatch.setProcessDefinition(getProcessDefinition(processInstance.getProcessDefinitionId()));

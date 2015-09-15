@@ -17,7 +17,7 @@ public class Produce {
 	private String proName;
 	private String proType;
 	private String proPlace;
-	private String proLev;//初级 初级加工 名优
+	private String proLev;//鍒濈骇 鍒濈骇鍔犲伐 鍚嶄紭
 	
 	private String reportName;
 	private String reportReason;
@@ -25,20 +25,23 @@ public class Produce {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date applyTime;
 	
-	//-- 临时属性 --//
+	private String isSave;//0:没有归档  1：已经归档
 	
-	// 流程任务
+	
+	//-- 涓存椂灞炴� --//
+	
+	// 娴佺▼浠诲姟
 	private Task task;
 	
 	private Map<String, Object> variables;
 	
-	// 运行中的流程实例
+	// 杩愯涓殑娴佺▼瀹炰緥
 	private ProcessInstance processInstance;
 	
-	// 历史的流程实例
+	// 鍘嗗彶鐨勬祦绋嬪疄渚�
 	private HistoricProcessInstance historicProcessInstance;
 	
-	// 流程定义
+	// 娴佺▼瀹氫箟
 	private ProcessDefinition processDefinition;
 
 	public String getProcessInstanceId() {
@@ -152,6 +155,14 @@ public class Produce {
 
 	public void setProcessDefinition(ProcessDefinition processDefinition) {
 		this.processDefinition = processDefinition;
+	}
+
+	public String getIsSave() {
+		return isSave;
+	}
+
+	public void setIsSave(String isSave) {
+		this.isSave = isSave;
 	}
 	
 	

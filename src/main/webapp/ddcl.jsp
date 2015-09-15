@@ -37,7 +37,9 @@ $(function(){
 	 $('.trace').click(graphTrace);
 	$(".handle_recollect").click(function(){
 		var tid = $(this).attr("tid");
-		$("#re_collect input[type=hidden]").val(tid);
+		var pid = $(this).attr("name");
+		$("#re_collect input[name=tid]").val(tid);
+		$("#re_collect input[name=pid]").val(pid);
 		$.ajax({
 			url:"${ctx}/getProduce.do",
 			dataType:"json",
@@ -81,6 +83,19 @@ $(function(){
 	});
 	
 	$(".handle_jgry").click(function(){
+		var ry = $(this).attr("people");
+		console.log(ry+"**");
+		if(ry!=""&&ry!=undefined){
+			$(".agree").hide();
+			$(".reject").hide();
+			var pid = $(this).attr("name");
+			var tid = $(this).attr("tid");
+			$(".save").attr("pid",pid);
+			$(".save").attr("tid",tid);
+			
+		}else{
+			$(".save").hide();
+		}
 		/* 设置为那个节点的审批 */
 		var assignee = $(this).attr("assignee");
 		$(".agree").attr("assignee",assignee);
@@ -129,6 +144,11 @@ $(function(){
 	$(".reject").click(function(){
 		window.location.href="${ctx}/completeTask.do?id="+$(this).attr("tid")+"&assignee="+$(this).attr("assignee")+"&sta=false";
 	});
+	$(".save").click(function(){
+		window.location.href="${ctx}/completeSaveFile.do?id="+$(this).attr("tid")+"&pid="+$(this).attr("pid");
+	});
+	
+	
 	
 })
 
@@ -187,7 +207,7 @@ $(function(){
 									<a class="handle_jgry" name="${dispatch.id}" tid="${task.id }" href="#" assignee="${task.assignee }">审批</a>
 								</c:if>
 								<c:if test="${not empty task.assignee and sessionScope.user.id=='GDRY'}">
-									<a class="handle_jgry" name="${dispatch.id}" tid="${task.id }" href="#">归档</a>
+									<a class="handle_jgry" people="gdry" name="${dispatch.id}" tid="${task.id }" href="#">归档</a>
 								</c:if>
 								
 							</td>
@@ -236,11 +256,14 @@ $(function(){
 			<hr>
 			<button class="agree" tid="" assignee="">同意</button>
 			<button class="reject" tid="" assignee="">驳回</button>
+			<button class="save" tid="" pid="">归档</button>
+			
 		</div>
 		
 		<div id="re_collect">
 			<form action="${ctx}/completeReCollect.do" method="post">
 				<input type="hidden" name="tid" value="">
+				<input type="hidden" name="pid" value="">
                     <div class="form_list"><label class="lable_title">产品名称</label><input class="form_input" type="text" name="proName"/></div>
 					<div class="form_list"><label class="lable_title">产品类型</label><input class="form_input" type="text" name="proType"/></div>
 					<div class="form_list"><label class="lable_title">产&nbsp;&nbsp;地</label><input class="form_input" type="text" name="proPlace"/></div>

@@ -32,5 +32,8 @@
         <property name="applyTime" type="java.util.Date">
             <column name="APPLY_TIME" />
         </property>
+        <property name="isSave" type="string">
+            <column name="IS_SAVE" />
+        </property>
     </class>
 </hibernate-mapping>

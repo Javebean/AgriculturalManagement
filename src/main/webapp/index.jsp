@@ -79,10 +79,6 @@
 		
 			<ul class="main">
 				<li>
-				<a></a>
-				</li>
-
-				<li>
 				<a href="welcome.html" target="right" onClick="getclassname(this)"><i class="icon-home"></i>&nbsp;&nbsp;首页</a>
 				</li>
 				<li>

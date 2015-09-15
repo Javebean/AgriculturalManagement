@@ -838,7 +838,7 @@ ul.main > li > a {
   
   background:#89c5ac;
   color: #08200a;
-  font-size:1.7em;
+  font-size:1.4em;
   font-weight:900;
   letter-spacing:0.2em;
   border: none;
@@ -848,12 +848,12 @@ header ul.header_actions > li > ul
 #main_navigation.dark_navigation ul.main > li:first-child > a {
   border-top: none;
 }
-
+/*
 ul.main > li > a:hover,
 ul.main > li > a:hover > i {
-  text-decoration: none;
+ 
   color: #809097;
-  font-size:1.5em;
+  font-size:1.4em;
 }
 
 ul.main > li > a:active,
@@ -865,22 +865,22 @@ ul.main > li > a.subOpened {
 	  font-size:1.5em;
   background: #071508;
 }
+*/
 #main_navigation.dark_navigation ul.main > li > a:hover,
 #main_navigation.dark_navigation ul.main > li > a:active,
 #main_navigation.dark_navigation ul.main > li.active > a,
 #main_navigation.dark_navigation ul.main > li > a.subOpened {
   background: rgba(7, 21, 8, 0.05);
   font-weight: 900;
-  font-size:1.5em;
 }
-
+/*
 ul.main > li > a:active > i,
 ul.main > li.active > a > i,
 ul.main > li > a.subOpened > i {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.22);
 }
-
+*/
 ul.main > li > a > i {
   font-size: 14px;
   color: #5c696f;

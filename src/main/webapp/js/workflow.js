@@ -19,10 +19,10 @@ function graphTrace(options) {
                 'class': 'activiyAttr'
             }).css({
                 position: 'absolute',
-                left: (v.x - 1)*arg,
-                top: (v.y - 1)*arg,
-                width: (v.width - 2)*arg,
-                height: (v.height - 2)*arg,
+                left: (v.x+1)*arg,
+                top: (v.y)*arg,
+                width: (v.width-2)*arg,
+                height: (v.height-3)*arg,
                 
             })
             if (v.currentActiviti) {

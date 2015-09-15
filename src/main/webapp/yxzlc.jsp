@@ -40,10 +40,9 @@
 				class="table table-striped table-bordered table-hover datatable">
 				<thead>
 					<tr>
-						<th width="10%">案件名</th>
-						<th width="15%">启动时间</th>
 						<th width="20%">当前节点</th>
 						<th width="20%">流程状态</th>
+						<th width="15%">启动时间</th>
 						<th width="20%">当前处理人</th>
 					</tr>
 				</thead>
@@ -53,13 +52,9 @@
 						<c:set var="pi" value="${dispatch.processInstance }" />
 						<tr id="${dispatch.id }" tid="${task.id }">
 
-							<td>${task.name}</td>
+							<td><a class="trace" href='#' pid="${pi.id }" title="点击查看流程图" >${task.name }</a></td>
+							<td>${pi.suspended ? "已挂起" : "正常" }；<b title='流程版本号'>V:${dispatch.processDefinition.version }</b></td>
 							<td>${dispatch.applyTime}</td>
-							<td><a class="trace" href='#' pid="${pi.id }"
-								title="点击查看流程图">${task.name }</a></td>
-
-							<td>${pi.suspended ? "已挂起" : "正常" }；<b title='流程版本号'>V:
-									${dispatch.processDefinition.version }</b></td>
 							<td>${task.assignee }</td>
 						</tr>
 					</c:forEach>

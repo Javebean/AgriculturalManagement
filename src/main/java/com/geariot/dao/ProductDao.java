@@ -20,7 +20,7 @@ public class ProductDao {
 	
 	public void addPro(Produce pro){
 		try{
-			getSession().save(pro);
+			getSession().saveOrUpdate(pro);
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -31,6 +31,17 @@ public class ProductDao {
 		try{
 			String sql = "from Produce where id = ?";
 			return (Produce) getSession().createQuery(sql).setInteger(0, id).uniqueResult();
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/*¹éµµ*/
+	public void updatePro(int id){
+		try{
+			String sql = "update Produce set isSave=1 where id= ?";
+			getSession().createQuery(sql).setInteger(0, id).executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new RuntimeException(e);

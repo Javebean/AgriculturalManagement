@@ -1,4 +1,4 @@
-﻿body
+body
 {
 	
 	background:url(../images/bg.jpg);
@@ -18,7 +18,7 @@ input,img{vertical-align:middle;}
 	margin-left:auto;
 	margin-right:auto;
 	
-	margin-top:15%;
+	margin-top:5%;
 	
 	text-align:center;
 	background:rgba(0,0,0,0.2) none repeat scroll !important;
@@ -107,5 +107,23 @@ input,img{vertical-align:middle;}
 	margin-top:-12px;
 	box-shadow: inset 0px 1px 0px #827066, 0px 3px 0px #19120f, 0px 6px 3px #fff;
 }
+.logo{
+	/*height:80px;*/
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:7%;
+}
+.logo h1
+{
+	font-weight:900;
+	text-align:center;
+	letter-spacing:0.3em;
+	font-size:2.5em;
+	/*line-height:100px;*/
+	color:#fff;
+}
+
+
 
 

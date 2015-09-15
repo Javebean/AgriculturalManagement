@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 <c:set value="${pageContext.request.contextPath}" scope="page" var="ctx" />
 
+	<link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+
 <script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -32,11 +35,11 @@ $(function(){
 
 </head>
 <body>
-
+ <div class="inner">              
 
 <button id="deployprocess">部署流程</button>
-
-<table width="100%" border="1">
+<div class="well-content" style="border:0px;">
+<table class="table table-striped table-bordered table-hover datatable" border="1">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -64,5 +67,7 @@ $(function(){
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
+	</div>
 </body>
 </html>
